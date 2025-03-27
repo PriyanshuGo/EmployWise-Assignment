@@ -30,3 +30,6 @@ Before running the project, ensure you have the following installed:
 Clone the repository to your local machine using the following command:
 
 git clone https://github.com/PriyanshuGo/EmployWise-Assignment.git
+
+## Hosted Version
+You can also access the hosted version of the app here: https://employ-wise-assignment-nine.vercel.app
