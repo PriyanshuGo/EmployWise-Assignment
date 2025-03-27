@@ -9,14 +9,15 @@ import Login from "./components/Login";
 import UserList from "./Pages/UserList";
 import EditUser from "./Pages/EditUser";
 import { UserDataProvider } from "./contextCreate/Userdata";
-import AppLayout from "./Pages/AppLayout"
+import Home from "./Pages/Home";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<AppLayout />}>
+      <Route>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/user" element={<UserList />} />
+        <Route path="/userList" element={<UserList />} />
         <Route path="/editUser" element={<EditUser />} />
       </Route>
     )

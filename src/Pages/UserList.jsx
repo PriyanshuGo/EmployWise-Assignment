@@ -5,18 +5,16 @@ import Paging from "../components/UserList/Paging";
 import DisplayUser from "../components/UserList/DisplayUser";
 import { useNavigate } from "react-router-dom";
 
-
 function UserList() {
-  const { user, setUser, setEditingUser } = useContext(UserContext);
+  const { user, setUser, editingUser,setEditingUser } = useContext(UserContext);
   const { allUser, page, loading } = user;
   const navigate = useNavigate();
-
 
   const baseURl = "https://reqres.in";
 
   useEffect(() => {
     fetchUsers();
-  }, [page]);
+  }, [page,editingUser]);
 
   const fetchUsers = async () => {
     try {
@@ -37,9 +35,8 @@ function UserList() {
   };
 
   const handleEditUser = (user) => {
-    console.log(user);
     setEditingUser(user);
-    navigate("/editUser")
+    navigate("/editUser");
   };
 
   if (loading) {
@@ -49,11 +46,13 @@ function UserList() {
       </div>
     );
   }
-  
 
   return (
     <div>
-      <DisplayUser allUser={allUser} handleEditUser={handleEditUser}/>
+      <p className="text-center text-2xl font-semibold text-gray-800 bg-gray-200 py-2 rounded-md shadow-md">
+        User List
+      </p>
+      <DisplayUser allUser={allUser} handleEditUser={handleEditUser} />
       <div className="flex justify-center mt-4">
         <Paging setUser={setUser} />
       </div>
