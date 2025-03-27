@@ -16,10 +16,18 @@ function UserList() {
   const fetchUsers = async () => {
     try {
       const res = await axios.get(`${baseURl}/api/users?page=${page}`);
-      setUser((prev) => ({ ...prev, allUser: res.data.data, loading: false }));
+      const data = res.data.data;
+      setUser((prev) => ({ ...prev, allUser: data, loading: false }));
+      if (data.length === 0) {
+        alert("No more results found");
+        setUser((prev) => ({
+          ...prev,
+          page: Math.max(prev.page - 1, 1),
+        }));
+      }
     } catch (error) {
       console.error("Error fetching users:", error);
-      //   setUser((prev) => ({ ...prev, loading: false }));
+      setUser((prev) => ({ ...prev, loading: false }));
     }
   };
 
@@ -55,7 +63,7 @@ function UserList() {
       </div>
 
       <div className="flex justify-center mt-4">
-        <Paging />
+        <Paging setUser={setUser} />
       </div>
     </div>
   );
