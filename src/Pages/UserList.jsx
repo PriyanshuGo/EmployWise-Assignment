@@ -3,10 +3,14 @@ import axios from "axios";
 import { UserContext } from "../contextCreate/Userdata";
 import Paging from "../components/UserList/Paging";
 import DisplayUser from "../components/UserList/DisplayUser";
+import { useNavigate } from "react-router-dom";
+
 
 function UserList() {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, setEditingUser } = useContext(UserContext);
   const { allUser, page, loading } = user;
+  const navigate = useNavigate();
+
 
   const baseURl = "https://reqres.in";
 
@@ -32,6 +36,12 @@ function UserList() {
     }
   };
 
+  const handleEditUser = (user) => {
+    console.log(user);
+    setEditingUser(user);
+    navigate("/editUser")
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -39,10 +49,11 @@ function UserList() {
       </div>
     );
   }
+  
 
   return (
     <div>
-      <DisplayUser allUser={allUser}/>
+      <DisplayUser allUser={allUser} handleEditUser={handleEditUser}/>
       <div className="flex justify-center mt-4">
         <Paging setUser={setUser} />
       </div>
