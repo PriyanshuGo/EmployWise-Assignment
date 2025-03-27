@@ -5,7 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./App.css";
-import Login from "./components/Login";
+import Login from "./Pages/Login";
 import UserList from "./Pages/UserList";
 import EditUser from "./Pages/EditUser";
 import { UserDataProvider } from "./contextCreate/Userdata";

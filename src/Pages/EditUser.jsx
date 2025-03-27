@@ -13,6 +13,7 @@ function EditUser() {
     id: "",
   });
 
+  const [error, setError] = useState("");
   const baseURl = "https://reqres.in";
 
   useEffect(() => {
@@ -28,6 +29,7 @@ function EditUser() {
   }, [editingUser]);
 
   const handleUpdate = async () => {
+    setError("");
     try {
       console.log("🔄 Updating user:", updatedUser);
       const res = await axios.put(
@@ -37,7 +39,7 @@ function EditUser() {
       console.log("✅ User updated successfully:", res.data);
       navigate("/userList");
     } catch (error) {
-      alert("Failed to update user. Please try again.");
+      setError("Failed to update user. Please try again.");
     }
   };
 
@@ -49,8 +51,10 @@ function EditUser() {
     <div className="fixed inset-0 flex items-center justify-center bg-gray-200 bg-opacity-50">
       <div className="bg-white p-5 rounded-lg shadow w-96">
         <h2 className="text-lg font-medium mb-4">Edit User</h2>
+        {error && <p className="text-red-500 text-center">{error}</p>}
         <input
           type="text"
+          required
           value={updatedUser.first_name}
           onChange={(e) =>
             setUpdatedUser({ ...updatedUser, first_name: e.target.value })
@@ -59,6 +63,7 @@ function EditUser() {
         />
         <input
           type="text"
+          required
           value={updatedUser.last_name}
           onChange={(e) =>
             setUpdatedUser({ ...updatedUser, last_name: e.target.value })
@@ -67,6 +72,7 @@ function EditUser() {
         />
         <input
           type="email"
+          required
           value={updatedUser.email}
           onChange={(e) =>
             setUpdatedUser({ ...updatedUser, email: e.target.value })

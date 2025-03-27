@@ -6,7 +6,6 @@ function Home() {
 
   useEffect(() => {
     const isUser = localStorage.getItem("token");
-    console.log(isUser);
     if (isUser) {
       navigate("/userList");
     } else {
