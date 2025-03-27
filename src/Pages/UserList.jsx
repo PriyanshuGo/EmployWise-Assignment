@@ -47,7 +47,7 @@ function UserList() {
     try {
       console.log("🗑 Attempting to delete user with ID:");
       const res = await axios.delete(`${baseURl}/api/users/${id}`);
-      console.log("✅ User deleted successfully:");
+      alert("✅ User deleted successfully:");
     } catch (error) {
       alert("Failed to delete user. Please try again.");
     }
