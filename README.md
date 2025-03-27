@@ -33,3 +33,7 @@ git clone https://github.com/PriyanshuGo/EmployWise-Assignment.git
 
 ## Hosted Version
 You can also access the hosted version of the app here: https://employ-wise-assignment-nine.vercel.app
+
+## Debugging
+To help track the tasks and actions in the application, console.log statements have been added throughout the code. These logs provide insight into function calls, API responses, and data manipulations. You can use the browser's developer console to view the logs and track the app's flow.
+
