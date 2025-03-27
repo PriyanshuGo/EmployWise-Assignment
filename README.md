@@ -7,8 +7,10 @@ This is a user management application built using React.js. It includes user log
 - Display user list with paging
 - Edit user details
 - Delete user from the list
+- Search user from the list
 - User authentication using tokens stored in `localStorage`
 - API requests are made to a mock API (`https://reqres.in`)
+
 
 ## Technologies Used
 - React.js
