@@ -6,7 +6,7 @@ export const UserDataProvider = ({children}) => {
 const [user,setUser] = useState({
     alluser:[],
     page:1, 
-    loading:ture,
+    loading:true,
 });
 
 return <UserContext.Provider value={{user,setUser}}>{children}</UserContext.Provider>
