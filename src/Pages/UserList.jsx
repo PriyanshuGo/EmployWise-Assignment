@@ -1,15 +1,17 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../contextCreate/Userdata";
 import Paging from "../components/UserList/Paging";
 import DisplayUser from "../components/UserList/DisplayUser";
 import { useNavigate } from "react-router-dom";
+import SearchFilter from "../components/UserList/SearchFilter";
 
 function UserList() {
   const { user, setUser, editingUser, setEditingUser } =
     useContext(UserContext);
   const { allUser, page, loading } = user;
   const navigate = useNavigate();
+  const [searchUser, setSearchUser] = useState("");
 
   const baseURl = "https://reqres.in";
 
@@ -64,14 +66,18 @@ function UserList() {
       <p className="text-center text-2xl font-semibold text-gray-800 bg-gray-200 py-2 rounded-md shadow-md">
         User List
       </p>
+      <SearchFilter searchUser={searchUser} setSearchUser={setSearchUser} />
       <DisplayUser
         allUser={allUser}
         handleEditUser={handleEditUser}
         handleDeleteUser={handleDeleteUser}
+        searchUser={searchUser}
       />
-      <div className="flex justify-center mt-4">
-        <Paging setUser={setUser} />
-      </div>
+      {searchUser ? null : (
+        <div className="flex justify-center mt-4">
+          <Paging setUser={setUser} />
+        </div>
+      )}
     </div>
   );
 }

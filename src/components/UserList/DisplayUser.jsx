@@ -1,8 +1,19 @@
-function DisplayUser({ allUser, handleEditUser, handleDeleteUser }) {
+function DisplayUser({
+  allUser,
+  handleEditUser,
+  handleDeleteUser,
+  searchUser,
+}) {
+  const result = allUser.filter((el) => {
+    return (
+      el.first_name.toLowerCase().includes(searchUser.toLowerCase()) ||
+      el.last_name.toLowerCase().includes(searchUser.toLowerCase())
+    );
+  });
   return (
     <div>
       <div className="p-4 flex flex-wrap justify-center gap-4">
-        {allUser.map((user) => (
+        {result.map((user) => (
           <div
             key={user.id}
             className="bg-white p-4 rounded-lg shadow-md flex flex-col items-center w-full xs:w-3/4 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 transition-all duration-300 hover:shadow-lg"
@@ -25,7 +36,10 @@ function DisplayUser({ allUser, handleEditUser, handleDeleteUser }) {
               >
                 Edit
               </button>
-              <button onClick={() => handleDeleteUser(user.id)} className="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600">
+              <button
+                onClick={() => handleDeleteUser(user.id)}
+                className="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600"
+              >
                 Delete
               </button>
             </div>
