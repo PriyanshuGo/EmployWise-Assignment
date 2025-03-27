@@ -6,15 +6,17 @@ import DisplayUser from "../components/UserList/DisplayUser";
 import { useNavigate } from "react-router-dom";
 
 function UserList() {
-  const { user, setUser, editingUser,setEditingUser } = useContext(UserContext);
+  const { user, setUser, editingUser, setEditingUser } =
+    useContext(UserContext);
   const { allUser, page, loading } = user;
   const navigate = useNavigate();
 
   const baseURl = "https://reqres.in";
 
   useEffect(() => {
+    console.log("📡 Fetching users for page:", page);
     fetchUsers();
-  }, [page,editingUser]);
+  }, [page, editingUser]);
 
   const fetchUsers = async () => {
     try {
@@ -39,6 +41,16 @@ function UserList() {
     navigate("/editUser");
   };
 
+  const handleDeleteUser = async (id) => {
+    try {
+      console.log("🗑 Attempting to delete user with ID:");
+      const res = await axios.delete(`${baseURl}/api/users/${id}`);
+      console.log("✅ User deleted successfully:");
+    } catch (error) {
+      alert("Failed to delete user. Please try again.");
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -52,7 +64,11 @@ function UserList() {
       <p className="text-center text-2xl font-semibold text-gray-800 bg-gray-200 py-2 rounded-md shadow-md">
         User List
       </p>
-      <DisplayUser allUser={allUser} handleEditUser={handleEditUser} />
+      <DisplayUser
+        allUser={allUser}
+        handleEditUser={handleEditUser}
+        handleDeleteUser={handleDeleteUser}
+      />
       <div className="flex justify-center mt-4">
         <Paging setUser={setUser} />
       </div>

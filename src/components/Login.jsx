@@ -10,12 +10,15 @@ function Login() {
   const baseURl = "https://reqres.in"
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log("🔑 Attempting login with email:", email);
+
     try {
         const res = await axios.post(`${baseURl}/api/login`,{email,password})
+        console.log("✅ Login successful! Token:");
         localStorage.setItem("token",res.data.token);
         navigate("/user")
     } catch (error) {
-        console.log("Invaild email or passwprd")
+      alert("Invalid email or password. Please try again.");
     }
   }
   

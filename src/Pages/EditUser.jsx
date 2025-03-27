@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function EditUser() {
-  const { editingUser, setEditingUser } = useContext(UserContext);
+  const { editingUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [updatedUser, setUpdatedUser] = useState({
     first_name: "",
@@ -16,8 +16,8 @@ function EditUser() {
   const baseURl = "https://reqres.in";
 
   useEffect(() => {
-    console.log(editingUser);
     if (editingUser) {
+      console.log("📝 Editing user:", editingUser);
       setUpdatedUser({
         first_name: editingUser.first_name,
         last_name: editingUser.last_name,
@@ -29,12 +29,13 @@ function EditUser() {
 
   const handleUpdate = async () => {
     try {
+      console.log("🔄 Updating user:", updatedUser);
       const res = await axios.put(
         `${baseURl}/api/users/${updatedUser.id}`,
         updatedUser
       );
+      console.log("✅ User updated successfully:", res.data);
       navigate("/userList");
-      console.log(res);
     } catch (error) {
       alert("Failed to update user. Please try again.");
     }

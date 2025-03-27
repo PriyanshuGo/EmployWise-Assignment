@@ -1,4 +1,4 @@
-function DisplayUser({ allUser, handleEditUser }) {
+function DisplayUser({ allUser, handleEditUser, handleDeleteUser }) {
   return (
     <div>
       <div className="p-4 flex flex-wrap justify-center gap-4">
@@ -25,7 +25,7 @@ function DisplayUser({ allUser, handleEditUser }) {
               >
                 Edit
               </button>
-              <button className="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600">
+              <button onClick={() => handleDeleteUser(user.id)} className="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600">
                 Delete
               </button>
             </div>
