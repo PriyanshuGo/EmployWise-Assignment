@@ -7,6 +7,7 @@ import {
 import "./App.css";
 import Login from "./components/Login";
 import UserList from "./Pages/UserList";
+import { UserDataProvider } from "./contextCreate/Userdata";
 
 function App() {
   const router = createBrowserRouter(
@@ -17,7 +18,11 @@ function App() {
       </Route>
     )
   );
-  return <RouterProvider router={router} />;
+  return (
+    <UserDataProvider>
+      <RouterProvider router={router} />
+    </UserDataProvider>
+  );
 }
 
 export default App;
