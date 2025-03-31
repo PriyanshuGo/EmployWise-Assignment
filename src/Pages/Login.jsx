@@ -19,7 +19,7 @@ function Login() {
         const res = await axios.post(`${baseURl}/api/login`,{email,password})
         console.log("✅ Login successful! Token:");
         localStorage.setItem("token",res.data.token);
-        navigate("/userList")
+        navigate("/")
     } catch (error) {
       setError("Invalid email or password. Please try again.");
       console.log("Error during login:", error);

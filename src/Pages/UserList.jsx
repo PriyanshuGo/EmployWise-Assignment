@@ -18,7 +18,7 @@ function UserList() {
   useEffect(() => {
     console.log("📡 Fetching users for page:", page);
     fetchUsers();
-  }, [page, editingUser]);
+  }, [page]);
 
   const fetchUsers = async () => {
     try {

@@ -37,7 +37,7 @@ function EditUser() {
         updatedUser
       );
       console.log("✅ User updated successfully:", res.data);
-      navigate("/userList");
+      navigate("/");
     } catch (error) {
       setError("Failed to update user. Please try again.");
     }
