@@ -38,6 +38,7 @@ function EditUser() {
       );
       console.log("✅ User updated successfully:", res.data);
       navigate("/");
+      alert("User Updated.")
     } catch (error) {
       setError("Failed to update user. Please try again.");
     }
